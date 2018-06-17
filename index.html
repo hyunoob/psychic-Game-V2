@@ -9,5 +9,79 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
+  
+<body>
+
+	<div id="game">
+		<h1>Psychic Game</h1>
+		<p>Tell ME Your LETTER</p>
+		<p>Wins:</p>
+		<p>Losses:</p>
+		<p>Number of Guesses Left:</p>
+		<p>phailed Letters so Far:</p>
+	</div>
+
+	<script type="text/javascript">
+		
+		 var computerLetters = "abcdefghijklmnopqrstuvwxyz".split("");
+		 var wins = 0;
+		 var losses = 0;
+		 var maxofGuesses = 9;
+		 var lettersGuessedsoFar = [];	//array to put the letters in the the player has missed.
+
+	 document.onkeyup = function(event) {
+
+		 var options = "abcdefghijklmnopqrstuvwxyz".split("");
+		 var computersAlphabet = computerLetters [Math.floor (Math.random() * computerLetters.length)];
+		 var playersGuess = event.key;						//event key
+				 	
+			//if then statements. for loop, kept getting confused on this.
+			if (options.indexOf (playersGuess) > -1) {
+				
+				//when the player is RIGHT
+				if (playersGuess == computersAlphabet) {
+					wins ++;										//increase the wins
+					maxofGuesses = 9;
+                    lettersGuessedsoFar = [];
+					lettersGuessedPush.gov = []; 				//push the failed letters
+				
+				}
+				//when the player is WRONG
+				else if (playersGuess != computersAlphabet) {	// decrease when player got the the letter wrong.
+					maxofGuesses --; 							// subtract the number of guesses from "Number of Guesses Left"
+                    lettersGuessedsoFar.push(playersGuess);		
+            
+				}
+
+				else if (maxofGuesses == 0) {		//The number 0 to start the count.
+				
+
+				losses ++;						//increases loss numbers when letters are missed.
+				lettersGuessedsoFar = [];	
+				maxofGuesses = 9;	
+
+			}
+
+
+			//display in html.
+			var html = 
+			
+			"<h1> Psychic Game </h1>" +
+			"<p> Tell ME Your LETTER </p>" +
+			"<p> Wins: " + wins + "</p>" +
+			"<p> Losses: " + losses + " </p>" +
+			"<p> Number of Guesses Left: " + maxofGuesses + " </p>" +
+            "<p> phailed Letters so Far: " + lettersGuessedsoFar.join(", ") + " </p>";
+            "<p> Your Letters are right: " + lettersGuessedsoFar
+
+			document.querySelector("#game").innerHTML = html;
+
+			}
+			
+		};
+
+	</script>
+
+</body>
 </html>
 
